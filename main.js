@@ -70,10 +70,12 @@ nextButton.addEventListener("click", () => {
 
 skipButton.addEventListener("click", () => {
   audioPlayer.currentTime += 5;
+  savedTime = audioPlayer.currentTime;
 });
 
 rewindButton.addEventListener("click", () => {
   audioPlayer.currentTime -= 5;
+  savedTime = audioPlayer.currentTime;
 });
 
 audioPlayer.addEventListener("timeupdate", () => {
@@ -84,7 +86,7 @@ audioPlayer.addEventListener("timeupdate", () => {
 
   console.log(`${audioPlayer.currentTime} / ${audioPlayer.duration}`);
 
-  audioPlayer.playbackRate += 0.01;
+  audioPlayer.playbackRate += .01;
 });
 
 document.addEventListener("keydown", (event) => {
