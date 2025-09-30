@@ -7,43 +7,47 @@
 
     <link rel="stylesheet" href="output.css" />
   </head>
-  <body>
-    <h1>Acceleration Audio</h1>
+  
+  <body class="bg-[#121212] text-[#D3DAD9]">
+    <h1 class="text-2xl text-center my-5">Acceleration Audio</h1>
 
-    <i data-lucide="x"></i>
-    <i data-lucide="menu"></i>
+    <div class="flex justify-center space-x-4">
 
-    <button id="playButton">
-      <i data-lucide="play" class="w-50 h-50"></i>
-    </button>
+      <button id="prevButton" class="bg-[#1DB954] p-2 rounded-l-3xl">
+        <i data-lucide="skip-back" class="text-[#EEEEEE] fill-[#EEEEEE]"></i>
+      </button>
 
-    <a href="">
-      <i data-lucide="play" class="text-transparent fill-amber-600"></i>
-    </a>
+      <button id="rewindButton" class="bg-[#1DB954] p-2 rounded-sm">
+        <i data-lucide="arrow-big-left-dash" class="text-[#EEEEEE] fill-[#EEEEEE]"></i>
+      </button>
 
-    <a href="">
-      <i data-lucide="play" class="text-amber-600 fill-transparent"></i>
-    </a>
+      <button id="playButton" class="bg-[#1DB954] p-2 rounded-sm">
+        <i data-lucide="play" class="text-transparent fill-[#EEEEEE]"></i>
+      </button>
+      
+      <button id="pauseButton" class="bg-[#1DB954] p-2 rounded-sm hidden">
+        <i data-lucide="pause" class="text-transparent fill-[#EEEEEE]"></i>
+      </button>
 
-    <!-- <div class="icon-play"></div> -->
-    <button id="pauseButton">
-      <i data-lucide="pause" class="text-transparent fill-amber-600 w-50 h-60">
-      </i>
-    </button>
+      <button id="skipButton" class="bg-[#1DB954] p-2 rounded-sm">
+        <i data-lucide="arrow-big-right-dash" class="text-[#EEEEEE] fill-[#EEEEEE]"></i>
+      </button>
 
-    <button id="pauseButton2">
-      <i data-lucide="pause" class="text-amber-600 fill-transparent"> </i>
-    </button>
+      <button id="nextButton" class="bg-[#1DB954] p-2 rounded-r-3xl">
+        <i data-lucide="skip-forward" class="text-[#EEEEEE] fill-[#EEEEEE]"></i>
+      </button>
+  
+    </div>
 
     <p>
-      <progress id="progress" value="0" max="1" style="width:100%"></progress>
+      <progress id="progress" value="0" max="1" style="width: 50%; background-color: white;"></progress>
 
-      <div id="custom-progress" class="w-full h-8 bg-amber-100 trasition-all">
-        <div id="custom-progress-bar" class="w-0 h-8 bg-amber-500 z-10"></div>
+      <div id="custom-progress" class="w-[60%] self-center h-4 bg-[#B3B3B3] trasition-all">
+        <div id="custom-progress-bar" class="w-0 h-4 bg-[#1DB954] z-10"></div>
       </div>
     </p>
 
-    <audio src="" id="audioPlayer" controls></audio>
+    <audio src="" id="audioPlayer"></audio>
 
     <script src="main.js"></script>
 
