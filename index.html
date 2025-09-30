@@ -11,6 +11,28 @@
   <body class="bg-[#121212] text-[#D3DAD9]">
     <h1 class="text-2xl text-center my-5">Acceleration Audio</h1>
 
+
+
+    <div class="flex justify-around">
+      <div class="w-[25%] text-center">
+        <img src="albumart/Polarity.jpg" id="prevSongImage" class="rounded-2xl" alt="">
+        <p class="my-3">Previous Song</p>
+      </div>
+      
+      <div class="w-[30%]">
+        <img src="albumart/Aidan.jpg" id="currentSongImage" class="rounded-2xl" alt="">
+      </div>
+
+      <div class="w-[25%] text-center">
+        <img src="albumart/autumn_sun.png" id="nextSongImage" class="rounded-2xl" alt="">
+        <p class="my-3">Next Song</p>
+      </div>
+    </div>
+
+    <div class="text-center py-3">
+      <p id="currentSong">Current Song: Aidan</p>
+    </div>
+
     <div class="flex justify-center space-x-4">
 
       <button id="prevButton" class="bg-[#1DB954] p-2 rounded-l-3xl">
@@ -40,7 +62,7 @@
     </div>
 
     <p class="flex justify-center">
-      <progress id="progress" value="0" max="1" style="width: 75%; border-width: 1px; visibility: hidden;"></progress>
+      <progress id="progress" value="0" max="1" style="visibility: hidden;"></progress>
 
       <div id="custom-progress" class="rounded-[15px] w-[60%] h-4 bg-[#B3B3B3] trasition-all mx-auto">
         <div id="custom-progress-bar" class="rounded-[15px] w-0 h-4 bg-[#1DB954] z-10"></div>

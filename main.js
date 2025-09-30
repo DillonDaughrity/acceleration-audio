@@ -5,20 +5,23 @@ const progressBar = document.getElementById("progress");
 const customProgressBar = document.getElementById("custom-progress-bar");
 
 const baseURL = "/songs";
+const imageURL = "/albumart"
+
+let currentText = document.getElementById("currentSong")
 
 let currentTrack = 0;
 let savedTime = 0;
 let savedPlayback = 1;
 
 const songs = [
-  { file: "Aidan.mp3", albumArt: "Aidan.jpg" },
-  { file: "autumn_sun.mp3", albumArt: "autumn_sun.jpg" },
-  { file: "best_part_of_me.mp3", albumArt: "BestPart.jpg" },
-  { file: "Better Days - LAKEY INSPIRED.mp3", albumArt: "Better Days.jpg" },
-  { file: "i_cant_make_you_love_me_cover.mp3", albumArt: "i_cant_make_you_love_me_cover.jpeg" },
-  { file: "just_relax.mp3", albumArt: "justRelax_img.jpeg" },
-  { file: "paranormal-is-real-leonell-cassio.mp3", albumArt: "paranormal_real_500.jpg" },
-  { file: "Polarity.mp3", albumArt: "Polarity.jpg" },
+  { file: "Aidan.mp3", albumArt: "Aidan.jpg", name: "Aidan" },
+  { file: "autumn_sun.mp3", albumArt: "autumn_sun.png", name: "Autumn Sun" },
+  { file: "best_part_of_me.mp3", albumArt: "BestPart.jpg", name: "Best Part of Me" },
+  { file: "Better Days - LAKEY INSPIRED.mp3", albumArt: "Better Days.jpg", name: "Better Days" },
+  { file: "i_cant_make_you_love_me_cover.mp3", albumArt: "i_cant_make_you_love_me_cover.jpeg", name: "I can't make you love me (Cover)" },
+  { file: "just_relax.mp3", albumArt: "justRelax_img.jpeg", name: "Just Relax" },
+  { file: "paranormal-is-real-leonell-cassio.mp3", albumArt: "paranormal_real_500.jpg", name: "Paranormal is Real"},
+  { file: "Polarity.mp3", albumArt: "Polarity.jpg", name: "Polarity" },
 ];
 
 playButton.addEventListener("click", () => {
@@ -52,6 +55,11 @@ prevButton.addEventListener("click", () => {
   audioPlayer.currentTime = savedTime;
   audioPlayer.playbackRate = savedPlayback;
   currentTrack > 0 ? (currentTrack -= 1) : (currentTrack = 7);
+  currentSongImage.src = `${imageURL}/${songs[currentTrack].albumArt}`
+  currentText.textContent = `Current Song: ${songs[currentTrack].name}`
+
+  currentTrack === 7 ? (nextSongImage.src = `${imageURL}/${songs[0].albumArt}`) : (nextSongImage.src = `${imageURL}/${songs[currentTrack + 1].albumArt}`)
+  currentTrack === 0 ? (prevSongImage.src = `${imageURL}/${songs[7].albumArt}`) : (prevSongImage.src = `${imageURL}/${songs[currentTrack - 1].albumArt}`)
 });
 
 nextButton.addEventListener("click", () => {
@@ -66,6 +74,11 @@ nextButton.addEventListener("click", () => {
   audioPlayer.currentTime = savedTime;
   audioPlayer.playbackRate = savedPlayback;
   currentTrack < 7 ? (currentTrack += 1) : (currentTrack = 0);
+  currentSongImage.src = `${imageURL}/${songs[currentTrack].albumArt}`
+  currentText.textContent = `Current Song: ${songs[currentTrack].name}`
+
+  currentTrack === 7 ? (nextSongImage.src = `${imageURL}/${songs[0].albumArt}`) : (nextSongImage.src = `${imageURL}/${songs[currentTrack + 1].albumArt}`)
+  currentTrack === 0 ? (prevSongImage.src = `${imageURL}/${songs[7].albumArt}`) : (prevSongImage.src = `${imageURL}/${songs[currentTrack - 1].albumArt}`)
 });
 
 skipButton.addEventListener("click", () => {
