@@ -81,26 +81,27 @@ nextButton.addEventListener("click", () => {
   currentTrack === 0 ? (prevSongImage.src = `${imageURL}/${songs[6].albumArt}`) : (prevSongImage.src = `${imageURL}/${songs[currentTrack - 1].albumArt}`)
 });
 
-skipButton.addEventListener("click", () => {
+forwardButton.addEventListener("click", () => {
   audioPlayer.currentTime += 5;
   savedTime = audioPlayer.currentTime;
+  audioPlayer.playbackRate += .10
 });
 
 rewindButton.addEventListener("click", () => {
   audioPlayer.currentTime -= 5;
   savedTime = audioPlayer.currentTime;
+  audioPlayer.playbackRate -= .10
 });
 
 audioPlayer.addEventListener("timeupdate", () => {
-  progressBar.value = audioPlayer.currentTime / audioPlayer.duration;
   customProgressBar.style.width = `${
     (audioPlayer.currentTime / audioPlayer.duration) * 100
   }%`;
 
   console.log(`${audioPlayer.currentTime} / ${audioPlayer.duration}`);
 
+  audioPlayer.currentTime < .1 ? (audioPlayer.playbackRate = 1) : (audioPlayer.playbackRate += .01)
   currentSpeed.textContent = `Current Speed: ${Math.round(audioPlayer.playbackRate * 100) / 100}x`
-  audioPlayer.playbackRate += .01;
 });
 
 document.addEventListener("keydown", (event) => {
@@ -119,11 +120,13 @@ document.addEventListener("keydown", (event) => {
     case "arrowleft":
       audioPlayer.currentTime -= 5;
       savedTime = audioPlayer.currentTime;
+      audioPlayer.playbackRate -= .10
       break;
     
     case "arrowright":
       audioPlayer.currentTime += 5;
       savedTime = audioPlayer.currentTime;
+      audioPlayer.playbackRate += .10
       break;
   }
 });
