@@ -71,6 +71,7 @@ prevButton.addEventListener("click", () => {
   audioPlayer.currentTime = savedTime;
   audioPlayer.playbackRate = savedPlayback;
   currentTrack > 0 ? (currentTrack -= 1) : (currentTrack = 6);
+  audioPlayer.src = `${baseURL}/${songs[currentTrack].file}`;
   currentSongImage.src = `${imageURL}/${songs[currentTrack].albumArt}`;
   currentText.textContent = `Current Song: ${songs[currentTrack].name}`;
 
@@ -94,6 +95,7 @@ nextButton.addEventListener("click", () => {
   audioPlayer.currentTime = savedTime;
   audioPlayer.playbackRate = savedPlayback;
   currentTrack < 6 ? (currentTrack += 1) : (currentTrack = 0);
+  audioPlayer.src = `${baseURL}/${songs[currentTrack].file}`;
   currentSongImage.src = `${imageURL}/${songs[currentTrack].albumArt}`;
   currentText.textContent = `Current Song: ${songs[currentTrack].name}`;
 
