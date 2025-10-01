@@ -8,6 +8,7 @@ const baseURL = "/songs";
 const imageURL = "/albumart"
 
 let currentText = document.getElementById("currentSong")
+let currentSpeed = document.getElementById("currentSpeed")
 
 let currentTrack = 0;
 let savedTime = 0;
@@ -99,6 +100,7 @@ audioPlayer.addEventListener("timeupdate", () => {
 
   console.log(`${audioPlayer.currentTime} / ${audioPlayer.duration}`);
 
+  currentSpeed.textContent = `Current Speed: ${Math.round(audioPlayer.playbackRate * 100) / 100}x`
   audioPlayer.playbackRate += .01;
 });
 
@@ -107,10 +109,22 @@ document.addEventListener("keydown", (event) => {
     case " ":
       event.preventDefault();
       audioPlayer.paused ? audioPlayer.play() : audioPlayer.pause();
+      playButton.classList.toggle("hidden");
+      pauseButton.classList.toggle("hidden");
       break;
 
     case "m":
       audioPlayer.muted = !audioPlayer.muted;
+      break;
+
+    case "arrowleft":
+      audioPlayer.currentTime -= 5;
+      savedTime = audioPlayer.currentTime;
+      break;
+    
+    case "arrowright":
+      audioPlayer.currentTime += 5;
+      savedTime = audioPlayer.currentTime;
       break;
   }
 });
