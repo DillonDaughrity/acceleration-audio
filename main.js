@@ -5,10 +5,10 @@ const progressBar = document.getElementById("progress");
 const customProgressBar = document.getElementById("custom-progress-bar");
 
 const baseURL = "/songs";
-const imageURL = "/albumart"
+const imageURL = "/albumart";
 
-let currentText = document.getElementById("currentSong")
-let currentSpeed = document.getElementById("currentSpeed")
+let currentText = document.getElementById("currentSong");
+let currentSpeed = document.getElementById("currentSpeed");
 
 let currentTrack = 0;
 let savedTime = 0;
@@ -17,10 +17,26 @@ let savedPlayback = 1;
 const songs = [
   { file: "Aidan.mp3", albumArt: "Aidan.jpg", name: "Aidan" },
   { file: "autumn_sun.mp3", albumArt: "autumn_sun.png", name: "Autumn Sun" },
-  { file: "best_part_of_me.mp3", albumArt: "BestPart.jpg", name: "Best Part of Me" },
-  { file: "Better Days - LAKEY INSPIRED.mp3", albumArt: "Better Days.jpg", name: "Better Days" },
-  { file: "just_relax.mp3", albumArt: "justRelax_img.jpeg", name: "Just Relax" },
-  { file: "paranormal-is-real-leonell-cassio.mp3", albumArt: "paranormal_real_500.jpg", name: "Paranormal is Real"},
+  {
+    file: "best_part_of_me.mp3",
+    albumArt: "BestPart.jpg",
+    name: "Best Part of Me",
+  },
+  {
+    file: "Better Days - LAKEY INSPIRED.mp3",
+    albumArt: "Better Days.jpg",
+    name: "Better Days",
+  },
+  {
+    file: "just_relax.mp3",
+    albumArt: "justRelax_img.jpeg",
+    name: "Just Relax",
+  },
+  {
+    file: "paranormal-is-real-leonell-cassio.mp3",
+    albumArt: "paranormal_real_500.jpg",
+    name: "Paranormal is Real",
+  },
   { file: "Polarity.mp3", albumArt: "Polarity.jpg", name: "Polarity" },
 ];
 
@@ -55,11 +71,15 @@ prevButton.addEventListener("click", () => {
   audioPlayer.currentTime = savedTime;
   audioPlayer.playbackRate = savedPlayback;
   currentTrack > 0 ? (currentTrack -= 1) : (currentTrack = 6);
-  currentSongImage.src = `${imageURL}/${songs[currentTrack].albumArt}`
-  currentText.textContent = `Current Song: ${songs[currentTrack].name}`
+  currentSongImage.src = `${imageURL}/${songs[currentTrack].albumArt}`;
+  currentText.textContent = `Current Song: ${songs[currentTrack].name}`;
 
-  currentTrack === 6 ? (nextSongImage.src = `${imageURL}/${songs[0].albumArt}`) : (nextSongImage.src = `${imageURL}/${songs[currentTrack + 1].albumArt}`)
-  currentTrack === 0 ? (prevSongImage.src = `${imageURL}/${songs[6].albumArt}`) : (prevSongImage.src = `${imageURL}/${songs[currentTrack - 1].albumArt}`)
+  currentTrack === 6
+    ? (nextSongImage.src = `${imageURL}/${songs[0].albumArt}`)
+    : (nextSongImage.src = `${imageURL}/${songs[currentTrack + 1].albumArt}`);
+  currentTrack === 0
+    ? (prevSongImage.src = `${imageURL}/${songs[6].albumArt}`)
+    : (prevSongImage.src = `${imageURL}/${songs[currentTrack - 1].albumArt}`);
 });
 
 nextButton.addEventListener("click", () => {
@@ -74,23 +94,27 @@ nextButton.addEventListener("click", () => {
   audioPlayer.currentTime = savedTime;
   audioPlayer.playbackRate = savedPlayback;
   currentTrack < 6 ? (currentTrack += 1) : (currentTrack = 0);
-  currentSongImage.src = `${imageURL}/${songs[currentTrack].albumArt}`
-  currentText.textContent = `Current Song: ${songs[currentTrack].name}`
+  currentSongImage.src = `${imageURL}/${songs[currentTrack].albumArt}`;
+  currentText.textContent = `Current Song: ${songs[currentTrack].name}`;
 
-  currentTrack === 6 ? (nextSongImage.src = `${imageURL}/${songs[0].albumArt}`) : (nextSongImage.src = `${imageURL}/${songs[currentTrack + 1].albumArt}`)
-  currentTrack === 0 ? (prevSongImage.src = `${imageURL}/${songs[6].albumArt}`) : (prevSongImage.src = `${imageURL}/${songs[currentTrack - 1].albumArt}`)
+  currentTrack === 6
+    ? (nextSongImage.src = `${imageURL}/${songs[0].albumArt}`)
+    : (nextSongImage.src = `${imageURL}/${songs[currentTrack + 1].albumArt}`);
+  currentTrack === 0
+    ? (prevSongImage.src = `${imageURL}/${songs[6].albumArt}`)
+    : (prevSongImage.src = `${imageURL}/${songs[currentTrack - 1].albumArt}`);
 });
 
 forwardButton.addEventListener("click", () => {
   audioPlayer.currentTime += 5;
   savedTime = audioPlayer.currentTime;
-  audioPlayer.playbackRate += .10
+  audioPlayer.playbackRate += 0.1;
 });
 
 rewindButton.addEventListener("click", () => {
   audioPlayer.currentTime -= 5;
   savedTime = audioPlayer.currentTime;
-  audioPlayer.playbackRate -= .10
+  audioPlayer.playbackRate -= 0.1;
 });
 
 audioPlayer.addEventListener("timeupdate", () => {
@@ -100,8 +124,12 @@ audioPlayer.addEventListener("timeupdate", () => {
 
   console.log(`${audioPlayer.currentTime} / ${audioPlayer.duration}`);
 
-  audioPlayer.currentTime < .1 ? (audioPlayer.playbackRate = 1) : (audioPlayer.playbackRate += .01)
-  currentSpeed.textContent = `Current Speed: ${Math.round(audioPlayer.playbackRate * 100) / 100}x`
+  audioPlayer.currentTime < 0.1
+    ? (audioPlayer.playbackRate = 1)
+    : (audioPlayer.playbackRate += 0.01);
+  currentSpeed.textContent = `Current Speed: ${
+    Math.round(audioPlayer.playbackRate * 100) / 100
+  }x`;
 });
 
 document.addEventListener("keydown", (event) => {
@@ -120,13 +148,13 @@ document.addEventListener("keydown", (event) => {
     case "arrowleft":
       audioPlayer.currentTime -= 5;
       savedTime = audioPlayer.currentTime;
-      audioPlayer.playbackRate -= .10
+      audioPlayer.playbackRate -= 0.1;
       break;
-    
+
     case "arrowright":
       audioPlayer.currentTime += 5;
       savedTime = audioPlayer.currentTime;
-      audioPlayer.playbackRate += .10
+      audioPlayer.playbackRate += 0.1;
       break;
   }
 });
